@@ -6,179 +6,44 @@
   <title>Lighting Design | James Matlock</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --black: #080808; --deep: #0e0e0e; --charcoal: #1a1a1a;
-      --amber: #c8882a; --amber-glow: #e8a840; --white: #f0ece4;
-      --grey: #888078; --light-grey: #b8b0a4;
-      --font-display: 'Cormorant Garamond', serif; --font-ui: 'Rajdhani', sans-serif;
-    }
+    :root { --black: #080808; --deep: #0e0e0e; --charcoal: #1a1a1a; --amber: #c8882a; --amber-glow: #e8a840; --white: #f0ece4; --grey: #888078; --light-grey: #b8b0a4; --font-display: 'Cormorant Garamond', serif; --font-ui: 'Rajdhani', sans-serif; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--black); color: var(--white); font-family: var(--font-ui); overflow-x: hidden; }
     body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.5; }
 
-    /* ── NAV ── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: linear-gradient(to bottom, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.85) 70%, transparent 100%); backdrop-filter: blur(4px); }
-    .nav-logo { display: flex; align-items: center; text-decoration: none; height: 70px; }
     .nav-logo img { height: 70px; width: auto; object-fit: contain; }
     .nav-center { display: flex; gap: 36px; list-style: none; }
-    .nav-center a { font-family: var(--font-ui); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--light-grey); text-decoration: none; transition: color 0.3s; padding: 4px 0; border-bottom: 1px solid transparent; }
+    .nav-center a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--light-grey); text-decoration: none; transition: color 0.3s; padding: 4px 0; border-bottom: 1px solid transparent; }
     .nav-center a:hover, .nav-center a.active { color: var(--amber-glow); border-bottom-color: rgba(232,168,64,0.4); }
-    .nav-right { display: flex; align-items: center; gap: 18px; }
-    .social-icon { color: var(--grey); transition: color 0.3s, transform 0.2s; display: flex; align-items: center; }
-    .social-icon:hover { color: var(--amber-glow); transform: translateY(-2px); }
 
-    /* ── HAMBURGER ── */
-    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 600; }
-    .hamburger span { display: block; width: 100%; height: 1.5px; background: var(--light-grey); transition: all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin: center; }
-    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--amber-glow); }
-    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--amber-glow); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; z-index: 600; }
+    .hamburger span { display: block; width: 100%; height: 1.5px; background: var(--light-grey); }
 
-    /* ── MOBILE MENU ── */
-    .mobile-menu { position: fixed; inset: 0; z-index: 400; background: rgba(8,8,8,0.97); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
-    .mobile-menu.open { opacity: 1; pointer-events: all; }
-    .mobile-menu a { font-family: var(--font-display); font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 300; color: var(--light-grey); text-decoration: none; letter-spacing: 0.05em; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05); width: 80%; text-align: center; opacity: 0; transform: translateY(20px); transition: color 0.3s, opacity 0.4s, transform 0.4s; }
-    .mobile-menu.open a { opacity: 1; transform: translateY(0); }
-    .mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
-    .mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
-    .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
-    .mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
-    .mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
-    .mobile-menu a:hover, .mobile-menu a.active { color: var(--amber-glow); }
-    .mobile-menu-socials { display: flex; gap: 24px; margin-top: 40px; opacity: 0; transition: opacity 0.4s 0.3s; }
-    .mobile-menu.open .mobile-menu-socials { opacity: 1; }
-    .mobile-menu-socials a { color: var(--grey); transition: color 0.3s; }
-    .mobile-menu-socials a:hover { color: var(--amber-glow); }
-
-    /* ── PAGE LAYOUT ── */
     .portfolio-page { padding: 140px 60px 80px; }
     .page-header { margin-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 36px; }
-    .page-eyebrow { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
-    .page-title { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1; }
+    .page-title { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; }
     .page-title em { font-style: italic; color: var(--amber-glow); }
 
-    /* ── FILTER BAR ── */
     .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 48px; }
-    .filter-btn { font-family: var(--font-ui); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.1); background: transparent; padding: 8px 20px; cursor: pointer; transition: all 0.3s; }
+    .filter-btn { font-family: var(--font-ui); font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.1); background: transparent; padding: 8px 20px; cursor: pointer; transition: all 0.3s; }
     .filter-btn:hover, .filter-btn.active { color: var(--amber-glow); border-color: rgba(232,168,64,0.5); background: rgba(232,168,64,0.05); }
 
-    /* ── PROJECT GRID ── */
-    .show-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
+    .show-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 4px; }
+    .show-card { position: relative; aspect-ratio: 4/5; cursor: pointer; overflow: hidden; }
+    .show-card-photo { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 1.2s; }
+    .show-card:hover .show-card-photo { transform: scale(1.1); }
+    .show-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.4) 50%, transparent 100%); }
+    .show-card-label { position: absolute; bottom: 24px; left: 24px; right: 24px; pointer-events: none; }
+    .show-card-category { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+    .show-card-name { font-family: var(--font-display); font-size: 1.6rem; font-weight: 300; color: var(--white); line-height: 1.1; }
 
-    /* ── PROJECT CARD ── */
-    .show-card { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; background: var(--charcoal); }
-    .show-card-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #1a1510 0%, #0e0c09 100%); display: flex; align-items: center; justify-content: center; filter: brightness(0.7); transition: filter 0.5s, transform 0.6s; background-size: cover; background-position: center; }
-    .show-card-placeholder-icon { font-size: 3rem; opacity: 0.15; pointer-events: none; }
-    .show-card:hover .show-card-placeholder { filter: brightness(0.85) saturate(1.1); transform: scale(1.04); }
-    .show-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 55%); }
-    .show-card-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 24px; }
-    .show-card-category { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
-    .show-card-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; color: var(--white); line-height: 1.1; }
-    .show-card-venue { font-size: 0.65rem; letter-spacing: 0.12em; color: var(--light-grey); margin-top: 5px; opacity: 0.85; }
-    .show-card-year { position: absolute; top: 16px; right: 16px; font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(232,168,64,0.9); background: rgba(0,0,0,0.65); padding: 4px 10px; white-space: nowrap; }
-    /* Expand hint */
-    .show-card-expand { position: absolute; top: 16px; left: 16px; width: 28px; height: 28px; background: rgba(232,168,64,0.15); border: 1px solid rgba(232,168,64,0.35); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
-    .show-card-expand svg { width: 12px; height: 12px; color: var(--amber-glow); }
-    .show-card:hover .show-card-expand { opacity: 1; }
-
-    /* ── DETAIL PANEL (expand in-place) ── */
-    .detail-panel {
-      display: none;
-      grid-column: 1 / -1;
-      background: var(--charcoal);
-      border: 1px solid rgba(232,168,64,0.15);
-      padding: 0;
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
-    .detail-panel.active {
-      display: block;
-      max-height: 600px;
-    }
-    .detail-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 48px 52px;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
-    }
-    .detail-panel.active .detail-inner { opacity: 1; transform: translateY(0); }
-    .detail-image {
-      aspect-ratio: 16/9;
-      background: linear-gradient(135deg, #1a1510 0%, #0e0c09 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; opacity: 0.2;
-      background-size: cover; background-position: center;
-      margin-right: 40px;
-    }
-    .detail-content { display: flex; flex-direction: column; justify-content: center; }
-    .detail-close {
-      position: absolute; top: 20px; right: 24px;
-      background: none; border: none; cursor: pointer;
-      color: var(--grey); font-size: 1.4rem; line-height: 1;
-      transition: color 0.2s; padding: 4px 8px;
-    }
-    .detail-close:hover { color: var(--amber-glow); }
-    .detail-eyebrow { font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
-    .detail-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 300; color: var(--white); margin-bottom: 6px; line-height: 1.1; }
-    .detail-title em { font-style: italic; color: var(--amber-glow); }
-    .detail-venue { font-size: 0.75rem; letter-spacing: 0.15em; color: var(--light-grey); margin-bottom: 24px; }
-    .detail-desc { font-family: var(--font-display); font-size: 1rem; color: var(--light-grey); line-height: 1.8; font-weight: 300; margin-bottom: 24px; }
-    .detail-meta { display: flex; gap: 32px; flex-wrap: wrap; }
-    .detail-meta-item { }
-    .detail-meta-label { font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--amber); margin-bottom: 4px; }
-    .detail-meta-value { font-size: 0.8rem; color: var(--white); letter-spacing: 0.05em; }
-
-    /* ── FOOTER ── */
-    footer { background: var(--deep); border-top: 1px solid rgba(255,255,255,0.04); padding: 28px 60px; display: flex; justify-content: space-between; }
-    .footer-copy { font-size: 0.62rem; color: rgba(136,128,120,0.5); }
-    .footer-union { font-size: 0.62rem; color: rgba(200,136,42,0.5); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 14px 20px; }
-      .nav-center { display: none; }
-      .nav-right .social-icon { display: none; }
-      .hamburger { display: flex; }
-      .portfolio-page { padding: 110px 16px 60px; }
-      .show-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 2px; }
-      .detail-inner { grid-template-columns: 1fr; padding: 28px 20px; }
-      .detail-image { margin-right: 0; margin-bottom: 24px; }
-      .detail-panel.active { max-height: 900px; }
-      footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
-    }
-    @media (max-width: 480px) {
-      .show-grid { grid-template-columns: 1fr 1fr; }
-      .show-card-name { font-size: 1rem; }
-    }
+    footer { background: var(--deep); border-top: 1px solid rgba(255,255,255,0.04); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; }
   </style>
 </head>
 <body>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="design.html" class="active">Design</a>
-    <a href="programming.html">Programming</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <div class="mobile-menu-socials">
-      <a href="https://www.instagram.com/james_lighting_design/" target="_blank" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7.75 2h8.5C19.42 2 22 4.58 22 7.75v8.5C22 19.42 19.42 22 16.25 22h-8.5C4.58 22 2 19.42 2 16.25v-8.5C2 4.58 4.58 2 7.75 2zm0 1.5C5.4 3.5 3.5 5.4 3.5 7.75v8.5C3.5 18.6 5.4 20.5 7.75 20.5h8.5c2.35 0 4.25-1.9 4.25-4.25v-8.5c0-2.35-1.9-4.25-4.25-4.25h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-1.5a.75.75 0 110 1.5.75.75 0 010-1.5z" fill="currentColor"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/james-matlock-0434851ba/" target="_blank" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/></svg>
-      </a>
-    </div>
-  </div>
-
   <nav>
-    <a href="index.html" class="nav-logo">
-      <img src="James Matlofck.png" alt="James Matlock Logo">
-    </a>
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="James Matlock"></a>
     <ul class="nav-center">
       <li><a href="index.html">Home</a></li>
       <li><a href="design.html" class="active">Design</a></li>
@@ -186,387 +51,65 @@
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div class="nav-right">
-      <a href="https://www.instagram.com/james_lighting_design/" target="_blank" class="social-icon" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7.75 2h8.5C19.42 2 22 4.58 22 7.75v8.5C22 19.42 19.42 22 16.25 22h-8.5C4.58 22 2 19.42 2 16.25v-8.5C2 4.58 4.58 2 7.75 2zm0 1.5C5.4 3.5 3.5 5.4 3.5 7.75v8.5C3.5 18.6 5.4 20.5 7.75 20.5h8.5c2.35 0 4.25-1.9 4.25-4.25v-8.5c0-2.35-1.9-4.25-4.25-4.25h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-1.5a.75.75 0 110 1.5.75.75 0 010-1.5z" fill="currentColor"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/james-matlock-0434851ba/" target="_blank" class="social-icon" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/></svg>
-      </a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
   </nav>
 
   <main class="portfolio-page">
     <header class="page-header">
-      <div class="page-eyebrow">Portfolio</div>
       <h1 class="page-title">Lighting <em>Design</em></h1>
     </header>
 
     <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
-      <button class="filter-btn" onclick="filterCards('Theatre', this)">Theatre</button>
-      <button class="filter-btn" onclick="filterCards('Corporate', this)">Corporate</button>
-      <button class="filter-btn" onclick="filterCards('Film/Concert', this)">Film / Concert</button>
-      <button class="filter-btn" onclick="filterCards('Club/Concert', this)">Club / Concert</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Theatre">Theatre</button>
+      <button class="filter-btn" data-filter="Corporate">Corporate</button>
+      <button class="filter-btn" data-filter="Film">Film</button>
+      <button class="filter-btn" data-filter="Live Events">Live Events</button>
     </div>
 
-    <!-- ════════════════════════════════════════
-         PROJECT CARDS
-         Each card has data-* attributes that drive the expanded detail panel.
-         data-desc: your show description/notes
-         data-role: your specific role (e.g. "Lighting Designer")
-         data-director: director name (optional)
-         data-year: year
-         ════════════════════════════════════════ -->
     <div class="show-grid" id="showGrid">
-
-      <!-- SHOW 1: Clue -->
-      <div class="show-card" data-category="Theatre"
-           data-name="Clue"
-           data-venue="Bountiful High School"
-           data-year="2024"
-           data-role="Lighting Designer"
-           data-desc="A classic whodunit brought to life with dramatic pools of light, shadow play, and vivid color shifts that underscored each suspect's tense moments. Designed the full rig and programmed all cues from scratch."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
+      <div class="show-card" data-category="Theatre" data-name="Beetlejuice">
+        <div class="show-card-photo" style="background-image: url('Beetlejuice.png');"></div>
         <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
-        <div class="show-card-label">
-          <div class="show-card-category">Theatre</div>
-          <div class="show-card-name">Clue</div>
-          <div class="show-card-venue">Bountiful High School</div>
-        </div>
-        <div class="show-card-year">2024</div>
-      </div>
-
-      <!-- SHOW 2: Aladdin -->
-      <div class="show-card" data-category="Theatre"
-           data-name="Aladdin"
-           data-venue="Millcreek Jr High"
-           data-year="2025"
-           data-role="Lighting Designer"
-           data-desc="A vibrant, high-energy production demanding lush warm palettes for the marketplace, deep saturated blues for the Cave of Wonders, and dynamic chase sequences throughout 'Friend Like Me'."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
-        <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
-        <div class="show-card-label">
-          <div class="show-card-category">Theatre</div>
-          <div class="show-card-name">Aladdin</div>
-          <div class="show-card-venue">Millcreek Jr High</div>
-        </div>
-        <div class="show-card-year">2025</div>
-      </div>
-
-      <!-- SHOW 3: Beetlejuice -->
-      <div class="show-card" data-category="Theatre"
-           data-name="Beetlejuice"
-           data-venue="Mueller Park Jr"
-           data-year="2025"
-           data-role="Lighting Designer"
-           data-desc="A psychedelic, otherworldly design that leaned into purples, intensity effects, and bold color contrasts between the living world and the afterlife. Heavy use of haze to sculpt beams and create a sense of supernatural dread."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
-        <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
         <div class="show-card-label">
           <div class="show-card-category">Theatre</div>
           <div class="show-card-name">Beetlejuice</div>
-          <div class="show-card-venue">Mueller Park Jr</div>
         </div>
-        <div class="show-card-year">2025</div>
       </div>
-
-      <!-- SHOW 4: Mamma Mia -->
-      <div class="show-card" data-category="Theatre"
-           data-name="Mamma Mia"
-           data-venue="Bountiful High School"
-           data-year="2025"
-           data-role="Lighting Designer"
-           data-desc="Sun-drenched Mediterranean vibes powered by warm ambers and natural sun look. Designed dynamic party sequences with tight concert-style programming while maintaining theatrical warmth throughout."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
+      <div class="show-card" data-category="Theatre" data-name="Mamma Mia">
+        <div class="show-card-photo" style="background-image: url('MammaMia.png');"></div>
         <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
         <div class="show-card-label">
           <div class="show-card-category">Theatre</div>
           <div class="show-card-name">Mamma Mia</div>
-          <div class="show-card-venue">Bountiful High School</div>
         </div>
-        <div class="show-card-year">2025</div>
       </div>
-
-      <!-- SHOW 5: Chicago -->
-      <div class="show-card" data-category="Theatre"
-           data-name="Chicago"
-           data-venue="Bountiful High School"
-           data-year="2025"
-           data-role="Lighting Designer"
-           data-desc="Gritty, noir-influenced design drawing on jazz-era aesthetics — sharp followspot work, plenty of specials, and cool versus warm contrasts to separate the cynical legal world from the emotional subtext."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
+      <div class="show-card" data-category="Film" data-name="Izzio DJ Video">
+        <div class="show-card-photo" style="background-image: url('IzzioDJVideo.png');"></div>
         <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
         <div class="show-card-label">
-          <div class="show-card-category">Theatre</div>
-          <div class="show-card-name">Chicago</div>
-          <div class="show-card-venue">Bountiful High School</div>
-        </div>
-        <div class="show-card-year">2025</div>
-      </div>
-
-      <!-- SHOW 6: Fools for Jazz -->
-      <div class="show-card" data-category="Corporate"
-           data-name="Fools for Jazz"
-           data-venue="Bountiful High School"
-           data-year="2024 · 2025 · 2026"
-           data-role="Lighting Designer"
-           data-desc="Recurring corporate jazz showcase requiring a flexible, speedy rig that needed little to no maintaining."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
-        <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
-        <div class="show-card-label">
-          <div class="show-card-category">Corporate</div>
-          <div class="show-card-name">Fools for Jazz</div>
-          <div class="show-card-venue">Bountiful High School</div>
-        </div>
-        <div class="show-card-year">2024 · 2025 · 2026</div>
-      </div>
-
-      <!-- SHOW 7: Holiday Inn -->
-      <div class="show-card" data-category="Theatre"
-           data-name="Holiday Inn"
-           data-venue="Bonneville High School"
-           data-year="2025"
-           data-role="Lighting Designer"
-           data-desc="A classic American musical requiring season-shifting lighting looks — from snowy winter scenes to lush springtime exteriors. Used effects and chases to show energy while still keeping the looks natural."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
-        <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
-        <div class="show-card-label">
-          <div class="show-card-category">Theatre</div>
-          <div class="show-card-name">Holiday Inn</div>
-          <div class="show-card-venue">Bonneville High School</div>
-        </div>
-        <div class="show-card-year">2025</div>
-      </div>
-
-      <!-- SHOW 8: Izzio DJ Video -->
-      <div class="show-card" data-category="Film/Concert"
-           data-name="Izzio DJ Video"
-           data-venue="Davis Catalyst Center"
-           data-year="2026"
-           data-role="Lighting Designer"
-           data-desc="High-energy DJ performance video shoot requiring camera-optimized lighting — tight beam work, punchy color effects, and flicker-free programming timed to the track for maximum visual impact on screen."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
-        <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
-        <div class="show-card-label">
-          <div class="show-card-category">Film / Concert</div>
+          <div class="show-card-category">Film</div>
           <div class="show-card-name">Izzio DJ Video</div>
-          <div class="show-card-venue">Davis Catalyst Center</div>
         </div>
-        <div class="show-card-year">2026</div>
       </div>
-
-      <!-- SHOW 9: Lucky Clovers Event -->
-      <div class="show-card" data-category="Club/Concert"
-           data-name="Lucky Clovers Event"
-           data-venue="SKY SLC"
-           data-year="2026"
-           data-role="Lighting Designer"
-           data-desc="St. Patrick's Day themed nightclub event requiring live reactive programming and spontaneous creativity."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
-        <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
-        <div class="show-card-label">
-          <div class="show-card-category">Club / Concert</div>
-          <div class="show-card-name">Lucky Clovers Event</div>
-          <div class="show-card-venue">SKY SLC</div>
-        </div>
-        <div class="show-card-year">2026</div>
-      </div>
-
-      <!-- SHOW 10: Something Rotten Jr -->
-      <div class="show-card" data-category="Theatre"
-           data-name="Something Rotten Jr"
-           data-venue="Mueller Park Jr"
-           data-year="2026"
-           data-role="Lighting Designer"
-           data-desc="A comedic Renaissance-era musical requiring period-appropriate looks alongside modern theatrical flair. Designed multiple distinct location looks and a show-stopping Broadway dream sequence."
-           onclick="openDetail(this)">
-        <div class="show-card-placeholder">
-          <div class="show-card-placeholder-icon">✦</div>
-        </div>
-        <div class="show-card-overlay"></div>
-        <div class="show-card-expand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
-        <div class="show-card-label">
-          <div class="show-card-category">Theatre</div>
-          <div class="show-card-name">Something Rotten Jr</div>
-          <div class="show-card-venue">Mueller Park Jr</div>
-        </div>
-        <div class="show-card-year">2026</div>
-      </div>
-
     </div>
-    <!-- DETAIL PANEL (injected by JS) -->
-    <div class="detail-panel" id="detailPanel" style="position:relative;">
-      <button class="detail-close" onclick="closeDetail()" aria-label="Close">✕</button>
-      <div class="detail-inner" id="detailInner"></div>
-    </div>
-
   </main>
 
   <footer>
     <div class="footer-copy">© 2025 James Matlock</div>
-    <div class="footer-union">IATSE 99</div>
+    <div class="footer-union">USA 829</div>
   </footer>
 
   <script>
-    // ── HAMBURGER ──
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.show-card').forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
+        });
       });
     });
-
-    // ── FILTER ──
-    function filterCards(category, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      closeDetail();
-      document.querySelectorAll('.show-card').forEach(card => {
-        card.style.display = (category === 'all' || card.dataset.category === category) ? '' : 'none';
-      });
-    }
-
-    // ── DETAIL EXPAND ──
-    let activeCard = null;
-
-    function openDetail(card) {
-      const panel = document.getElementById('detailPanel');
-      const inner = document.getElementById('detailInner');
-      const grid = document.getElementById('showGrid');
-
-      // Close if clicking same card
-      if (activeCard === card) { closeDetail(); return; }
-      activeCard = card;
-
-      // Highlight active card
-      document.querySelectorAll('.show-card').forEach(c => c.style.outline = 'none');
-      card.style.outline = '2px solid rgba(232,168,64,0.5)';
-
-      // Build panel content
-      const name = card.dataset.name || '';
-      const venue = card.dataset.venue || '';
-      const year = card.dataset.year || '';
-      const role = card.dataset.role || 'Lighting Designer';
-      const desc = card.dataset.desc || 'Description coming soon.';
-      const category = card.dataset.category || '';
-      // Check if card has a background image (for the detail image)
-      const placeholder = card.querySelector('.show-card-placeholder');
-      const bgImage = placeholder ? placeholder.style.backgroundImage : '';
-      const icon = card.querySelector('.show-card-placeholder-icon')?.textContent || '✦';
-
-      inner.innerHTML = `
-        <div class="detail-image" style="${bgImage ? 'background-image:' + bgImage + ';background-size:cover;background-position:center;font-size:0;' : ''}">
-          ${bgImage ? '' : icon}
-        </div>
-        <div class="detail-content">
-          <div class="detail-eyebrow">${category}</div>
-          <div class="detail-title">${name}</div>
-          <div class="detail-venue">${venue}</div>
-          <div class="detail-desc">${desc}</div>
-          <div class="detail-meta">
-            <div class="detail-meta-item">
-              <div class="detail-meta-label">Role</div>
-              <div class="detail-meta-value">${role}</div>
-            </div>
-            <div class="detail-meta-item">
-              <div class="detail-meta-label">Year</div>
-              <div class="detail-meta-value">${year}</div>
-            </div>
-          </div>
-        </div>
-      `;
-
-      // Move panel after the card's row
-      grid.appendChild(panel);
-
-      // Trigger open
-      panel.classList.remove('active');
-      requestAnimationFrame(() => {
-        panel.classList.add('active');
-        setTimeout(() => {
-          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
-      });
-    }
-
-    function closeDetail() {
-      const panel = document.getElementById('detailPanel');
-      panel.classList.remove('active');
-      document.querySelectorAll('.show-card').forEach(c => c.style.outline = 'none');
-      activeCard = null;
-      setTimeout(() => { panel.style.display = 'none'; panel.style.display = ''; }, 500);
-    }
-
-    // Close on Escape key
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
   </script>
 </body>
 </html>
