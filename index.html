@@ -21,7 +21,6 @@
       pointer-events: none; z-index: 9999; opacity: 0.4;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
       display: flex; justify-content: space-between; align-items: center;
@@ -43,14 +42,12 @@
     .social-icon { color: var(--grey); transition: color 0.3s, transform 0.2s; display: flex; align-items: center; }
     .social-icon:hover { color: var(--amber-glow); transform: translateY(-2px); }
 
-    /* ── HAMBURGER ── */
     .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 600; }
     .hamburger span { display: block; width: 100%; height: 1.5px; background: var(--light-grey); transition: all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin: center; }
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--amber-glow); }
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--amber-glow); }
 
-    /* ── MOBILE MENU ── */
     .mobile-menu {
       position: fixed; inset: 0; z-index: 400;
       background: rgba(8,8,8,0.97);
@@ -77,17 +74,12 @@
     .mobile-menu-socials a { color: var(--grey); transition: color 0.3s; }
     .mobile-menu-socials a:hover { color: var(--amber-glow); }
 
-    /* ── HERO ── */
     #home {
       position: relative; height: 100vh;
       display: flex; flex-direction: column; justify-content: flex-end;
       overflow: hidden;
     }
 
-    /* ── HERO SLIDESHOW ──
-       Slides sit behind the overlay and content.
-       Each .hero-slide holds one show photo.
-       JS cycles through them with a translate-X swipe. */
     .hero-slides-track {
       position: absolute; inset: 0;
       display: flex;
@@ -101,13 +93,7 @@
       background-position: center;
       flex-shrink: 0;
     }
-    /* Fallback gradient for slides with no photo yet */
-    .hero-slide-fallback {
-      background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,136,42,0.18) 0%, transparent 70%),
-                  linear-gradient(160deg, #0e0c09 0%, #080808 50%, #0a0808 100%);
-    }
 
-    /* Dark overlay so text stays readable over any photo */
     .hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
@@ -118,12 +104,10 @@
       );
     }
 
-    /* Subtle amber accent beams */
     .beam { position: absolute; top: -10%; width: 2px; height: 120vh; background: linear-gradient(to bottom, rgba(200,136,42,0.4) 0%, rgba(200,136,42,0.05) 60%, transparent 100%); transform-origin: top center; pointer-events: none; z-index: 1; }
     .beam-1 { left: 28%; transform: rotate(12deg); opacity: 0.4; }
     .beam-2 { left: 45%; transform: rotate(-4deg); opacity: 0.2; }
 
-    /* Slide counter dots */
     .hero-dots {
       position: absolute; bottom: 44px; right: 60px;
       display: flex; gap: 10px; z-index: 3;
@@ -135,7 +119,6 @@
     }
     .hero-dot.active { background: var(--amber-glow); width: 48px; }
 
-    /* Show label that appears bottom-right */
     .hero-slide-label {
       position: absolute; bottom: 68px; right: 60px;
       font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
@@ -159,13 +142,6 @@
     .scroll-line::after { content: ''; position: absolute; left: 0; top: 0; width: 50%; height: 100%; background: var(--amber); animation: scrollLineAnim 2s infinite linear; }
     @keyframes scrollLineAnim { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
 
-    /* ── VISION ── */
-    .vision-section { background: var(--deep); padding: 100px 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.03); }
-    .vision-quote { font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.5rem); font-weight: 300; line-height: 1.5; color: var(--white); max-width: 900px; margin: 0 auto 30px; }
-    .vision-quote em { color: var(--amber-glow); font-style: italic; }
-    .vision-author { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--grey); }
-
-    /* ── FEATURED ── */
     .featured-section { padding: 100px 60px; background: var(--black); }
     .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 16px; }
     .section-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; }
@@ -189,18 +165,15 @@
     .feat-card::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(232,168,64,0); transition: border-color 0.4s; }
     .feat-card:hover::after { border-color: rgba(232,168,64,0.3); }
 
-    /* ── BUTTONS ── */
     .btn-primary { display: inline-block; font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--black); background: var(--amber-glow); padding: 14px 36px; cursor: pointer; border: none; text-decoration: none; transition: background 0.3s, transform 0.2s; }
     .btn-primary:hover { background: #fff; transform: translateY(-1px); }
     .btn-ghost { display: inline-block; font-family: var(--font-ui); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--light-grey); border: 1px solid rgba(255,255,255,0.15); padding: 14px 36px; cursor: pointer; background: transparent; text-decoration: none; transition: border-color 0.3s, color 0.3s; }
     .btn-ghost:hover { border-color: var(--amber); color: var(--amber-glow); }
 
-    /* ── FOOTER ── */
     footer { background: var(--deep); border-top: 1px solid rgba(255,255,255,0.04); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; }
     .footer-copy { font-size: 0.62rem; letter-spacing: 0.2em; color: rgba(136,128,120,0.5); }
     .footer-union { font-size: 0.62rem; letter-spacing: 0.15em; color: rgba(200,136,42,0.5); }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 14px 20px; }
       .nav-center { display: none; }
@@ -210,7 +183,6 @@
       .scroll-indicator { left: 24px; bottom: 24px; }
       .hero-dots { right: 24px; bottom: 36px; }
       .hero-slide-label { right: 24px; bottom: 60px; }
-      .vision-section { padding: 70px 24px; }
       .featured-section { padding: 70px 24px; }
       .featured-grid { grid-template-columns: 1fr; gap: 16px; }
       .feat-card { aspect-ratio: 16/9; }
@@ -225,7 +197,6 @@
 </head>
 <body>
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html" class="active">Home</a>
     <a href="design.html">Design</a>
@@ -266,62 +237,25 @@
     </div>
   </nav>
 
-  <!-- ════════════════════════════════════════
-       HERO — Photo slideshow background
-       Each .hero-slide = one show photo.
-       The JS below auto-advances every 5 seconds with a swipe transition.
-       ════════════════════════════════════════ -->
   <main id="home">
 
-    <!-- ─── SLIDESHOW TRACK ───
-         Add or remove slides by copying/deleting a .hero-slide div.
-         Set background-image to your show photo filename.
-         Update data-label to the show name shown bottom-right. -->
     <div class="hero-slides-track" id="slidesTrack">
-
-      <!-- SLIDE 1: Holiday Inn -->
       <div class="hero-slide" style="background-image: url('Holidayinn-2.jpg');" data-label="Holiday Inn · Bonneville High"></div>
-
-      <!-- SLIDE 2: Chicago -->
       <div class="hero-slide" style="background-image: url('Holidayinn.jpg');" data-label="Holiday Inn · Bonneville High"></div>
-
-      <!-- SLIDE 3: Beetlejuice -->
       <div class="hero-slide" style="background-image: url('Holidayinn-3.jpg');" data-label="Holiday Inn · Bonneville High"></div>
-
-      <!-- SLIDE 4: Mamma Mia -->
       <div class="hero-slide" style="background-image: url('Foolsforjazz.jpeg');" data-label="Fools for Jazz · Bountiful High"></div>
-
-      <!-- SLIDE 5: Lucky Clovers -->
       <div class="hero-slide" style="background-image: url('Holidayinn-4.jpeg');" data-label="Holiday Inn · Bonneville High"></div>
-
-      <!-- SLIDE 6: Izzio -->
       <div class="hero-slide" style="background-image: url('Foolsforjazz-2.jpeg');" data-label="Fools for Jazz · Bountiful High"></div>
-
-      <!-- SLIDE 7: Fools for Jazz -->
       <div class="hero-slide" style="background-image: url('Holidayinn-5.jpg');" data-label="Holiday Inn · Bonneville High"></div>
-
-      <!-- SLIDE 8: Aladdin -->
-    
-      <!-- SLIDE 9: Clue -->
-    
-
-      <!-- SLIDE 10: Something Rotten Jr -->
-   
     </div>
-    <!-- ════ END SLIDESHOW TRACK ════ -->
 
-    <!-- Dark overlay for text legibility -->
     <div class="hero-overlay"></div>
-
-    <!-- Decorative light beams -->
     <div class="beam beam-1"></div>
     <div class="beam beam-2"></div>
 
-    <!-- Hero text content -->
     <div class="home-content">
       <div class="home-eyebrow">Lighting Designer &amp; Programmer</div>
       <h1 class="home-title">James <em>Matlock</em></h1>
-      <!-- ─── TAGLINE ─── Edit your tagline here -->
       <p class="home-tagline">Crafting immersive visual narratives through the intersection of light, space, and technology.</p>
       <div class="home-ctas">
         <a href="design.html" class="btn-primary">Explore Portfolio</a>
@@ -329,46 +263,23 @@
       </div>
     </div>
 
-    <!-- Slide name label (bottom-right) -->
     <div class="hero-slide-label" id="slideLabel"></div>
-
-    <!-- Dot navigation (bottom-right) -->
     <div class="hero-dots" id="heroDots"></div>
 
-    <!-- Scroll indicator (bottom-left) -->
     <div class="scroll-indicator">
       <div class="scroll-line"></div>
       <span>Scroll To Explore</span>
     </div>
 
   </main>
-  <!-- ════ END HERO ════ -->
 
-
-  <!-- ════ VISION / QUOTE ════ -->
-  <section class="vision-section">
-    <!-- ─── QUOTE ─── Edit here -->
-    <div class="vision-quote">
-      "Light is the invisible guide that dictates how we feel in a space. It doesn't just illuminate; it <em>shapes reality</em> and guides emotion."
-    </div>
-    <div class="vision-author">— James Matlock</div>
-  </section>
-
-
-  <!-- ════ FEATURED PROJECTS ════ -->
   <section class="featured-section">
     <div class="section-header">
       <h2 class="section-title">Featured <em>Projects</em></h2>
       <a href="design.html" class="section-link">View Full Portfolio →</a>
     </div>
 
-    <!-- ─── FEATURED CARDS ───
-         Each card links to design.html.
-         Set background-image on .feat-card-bg to your chosen show photo.
-         Edit category, title, and venue in the .feat-overlay. -->
     <div class="featured-grid">
-
-      <!-- Featured 1: Holiday Inn -->
       <div class="feat-card" onclick="window.location.href='design.html'">
         <div class="feat-card-bg" style="background-image: url('Holidayinn.jpg');"></div>
         <div class="feat-overlay">
@@ -378,7 +289,6 @@
         </div>
       </div>
 
-      <!-- Featured 2: Lucky Clovers -->
       <div class="feat-card" onclick="window.location.href='design.html'">
         <div class="feat-card-bg" style="background-image: url('Sky.jpeg');"></div>
         <div class="feat-overlay">
@@ -388,7 +298,6 @@
         </div>
       </div>
 
-      <!-- Featured 3: Fools for Jazz -->
       <div class="feat-card" onclick="window.location.href='design.html'">
         <div class="feat-card-bg" style="background-image: url('Foolsforjazz.jpeg');"></div>
         <div class="feat-overlay">
@@ -397,19 +306,15 @@
           <div class="feat-venue">Bountiful High Band</div>
         </div>
       </div>
-
     </div>
   </section>
 
-
-  <!-- ════ FOOTER ════ -->
   <footer>
     <div class="footer-copy">© 2025 James Matlock</div>
     <div class="footer-union">IATSE 99</div>
   </footer>
 
   <script>
-    // ── HAMBURGER ──
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
@@ -425,7 +330,6 @@
       });
     });
 
-    // ── HERO SLIDESHOW ──
     const track = document.getElementById('slidesTrack');
     const slides = Array.from(track.querySelectorAll('.hero-slide'));
     const dotsContainer = document.getElementById('heroDots');
@@ -433,7 +337,6 @@
     let current = 0;
     let timer;
 
-    // Build dot buttons
     slides.forEach((slide, i) => {
       const dot = document.createElement('div');
       dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
@@ -442,33 +345,24 @@
     });
 
     function updateDots() {
-      document.querySelectorAll('.hero-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === current);
-      });
+      document.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('active', i === current));
     }
-
     function updateLabel() {
-      const label = slides[current].dataset.label || '';
-      labelEl.textContent = label;
+      labelEl.textContent = slides[current].dataset.label || '';
     }
-
     function goTo(index) {
       current = (index + slides.length) % slides.length;
-      // Swipe: translate track by -100% * current slide index
       track.style.transform = `translateX(-${current * 100}%)`;
       updateDots();
       updateLabel();
       resetTimer();
     }
-
     function next() { goTo(current + 1); }
-
     function resetTimer() {
       clearInterval(timer);
       timer = setInterval(next, 5000);
     }
 
-    // Touch/swipe support
     let touchStartX = 0;
     track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     track.addEventListener('touchend', e => {
@@ -476,7 +370,6 @@
       if (Math.abs(diff) > 40) diff > 0 ? next() : goTo(current - 1);
     });
 
-    // Init
     updateLabel();
     resetTimer();
   </script>
