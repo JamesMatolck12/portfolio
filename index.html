@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>James Matlock | Lighting Design</title>
+  <title>James Matlock | Lighting Designer</title>
+  <meta name="description" content="James Matlock — Freelance Lighting Designer and Programmer based in Utah. Specializing in theatre, live events, and film."/>
+  <meta name="keywords" content="Lighting Designer, Theatrical Lighting Designer, Live Event Lighting, Utah Lighting Designer, Lighting Programmer"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --black: #080808; --deep: #0e0e0e; --charcoal: #1a1a1a; --warm-dark: #141210;
-      --amber: #c8882a; --amber-dim: #8a5e1a; --amber-glow: #e8a840; --white: #f0ece4;
+      --amber: #c8882a; --amber-glow: #e8a840; --white: #f0ece4;
       --grey: #888078; --light-grey: #b8b0a4;
       --font-display: 'Cormorant Garamond', serif; --font-ui: 'Rajdhani', sans-serif;
     }
@@ -48,7 +50,7 @@
     .mobile-menu-socials a { color: var(--grey); transition: color 0.3s; }
     .mobile-menu-socials a:hover { color: var(--amber-glow); }
     #home { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
-    .hero-slides-track { position: absolute; inset: 0; display: flex; transition: transform 1.2s cubic-bezier(0.77, 0, 0.18, 1); will-change: transform; }
+    .hero-slides-track { position: absolute; inset: 0; display: flex; transition: transform 1.2s cubic-bezier(0.77,0,0.18,1); will-change: transform; }
     .hero-slide { position: relative; min-width: 100%; height: 100%; background-size: cover; background-position: center; flex-shrink: 0; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.55) 40%, rgba(8,8,8,0.25) 100%); }
     .beam { position: absolute; top: -10%; width: 2px; height: 120vh; background: linear-gradient(to bottom, rgba(200,136,42,0.4) 0%, rgba(200,136,42,0.05) 60%, transparent 100%); transform-origin: top center; pointer-events: none; z-index: 1; }
@@ -57,7 +59,7 @@
     .hero-dots { position: absolute; bottom: 44px; right: 60px; display: flex; gap: 10px; z-index: 3; }
     .hero-dot { width: 28px; height: 2px; background: rgba(255,255,255,0.25); cursor: pointer; transition: background 0.4s, width 0.4s; }
     .hero-dot.active { background: var(--amber-glow); width: 48px; }
-    .hero-slide-label { position: absolute; bottom: 68px; right: 60px; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(232,168,64,0.7); z-index: 3; transition: opacity 0.5s; }
+    .hero-slide-label { position: absolute; bottom: 68px; right: 60px; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(232,168,64,0.7); z-index: 3; }
     .home-content { position: relative; z-index: 2; padding: 0 60px 100px; }
     .home-eyebrow { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: var(--amber); margin-bottom: 20px; }
     .home-title { font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 8rem); font-weight: 300; line-height: 0.92; color: var(--white); margin-bottom: 32px; }
@@ -76,7 +78,7 @@
     .section-link:hover { color: var(--white); }
     .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .feat-card { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--charcoal); cursor: pointer; }
-    .feat-card-bg { width: 100%; height: 100%; background-size: cover; background-position: center; background-color: #1a1510; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s; filter: brightness(0.55) saturate(0.8); }
+    .feat-card-bg { width: 100%; height: 100%; background-size: cover; background-position: center; background-color: #1a1510; transition: transform 0.6s cubic-bezier(0.25,1,0.5,1), filter 0.6s; filter: brightness(0.55) saturate(0.8); }
     .feat-card:hover .feat-card-bg { transform: scale(1.05); filter: brightness(0.75) saturate(1.1); }
     .feat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; }
     .feat-category { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
@@ -113,7 +115,6 @@
   </style>
 </head>
 <body>
-
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html" class="active">Home</a>
     <a href="portfolio.html">Portfolio</a>
@@ -128,7 +129,6 @@
       </a>
     </div>
   </div>
-
   <nav>
     <a href="index.html" class="nav-logo"><img src="James Matlofck.png" alt="James Matlock Logo"></a>
     <ul class="nav-center">
@@ -149,16 +149,15 @@
       </button>
     </div>
   </nav>
-
   <main id="home">
     <div class="hero-slides-track" id="slidesTrack">
-      <div class="hero-slide" style="background-image: url('Holidayinn-2.jpg');" data-label="Holiday Inn · Bonneville High"></div>
-      <div class="hero-slide" style="background-image: url('Holidayinn.jpg');" data-label="Holiday Inn · Bonneville High"></div>
-      <div class="hero-slide" style="background-image: url('Holidayinn-3.jpg');" data-label="Holiday Inn · Bonneville High"></div>
-      <div class="hero-slide" style="background-image: url('MTA4.jpg');" data-label="UHSMTA - Eccles Theatre"></div>
-      <div class="hero-slide" style="background-image: url('Holidayinn-4.jpeg');" data-label="Holiday Inn · Bonneville High"></div>
-      <div class="hero-slide" style="background-image: url('MTA8.jpg');" data-label="UHSMTA - Eccles Theatre"></div>
-      <div class="hero-slide" style="background-image: url('Holidayinn-5.jpg');" data-label="Holiday Inn · Bonneville High"></div>
+      <div class="hero-slide" style="background-image:url('Holidayinn-2.jpg');" data-label="Holiday Inn · Bonneville High"></div>
+      <div class="hero-slide" style="background-image:url('Holidayinn.jpg');" data-label="Holiday Inn · Bonneville High"></div>
+      <div class="hero-slide" style="background-image:url('Holidayinn-3.jpg');" data-label="Holiday Inn · Bonneville High"></div>
+      <div class="hero-slide" style="background-image:url('MTA4.jpg');" data-label="UHSMTA · Eccles Theatre"></div>
+      <div class="hero-slide" style="background-image:url('Holidayinn-4.jpeg');" data-label="Holiday Inn · Bonneville High"></div>
+      <div class="hero-slide" style="background-image:url('MTA8.jpg');" data-label="UHSMTA · Eccles Theatre"></div>
+      <div class="hero-slide" style="background-image:url('Holidayinn-5.jpg');" data-label="Holiday Inn · Bonneville High"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="beam beam-1"></div>
@@ -179,7 +178,6 @@
       <span>Scroll To Explore</span>
     </div>
   </main>
-
   <section class="featured-section">
     <div class="section-header">
       <h2 class="section-title">Featured <em>Projects</em></h2>
@@ -187,7 +185,7 @@
     </div>
     <div class="featured-grid">
       <div class="feat-card" onclick="window.location.href='portfolio.html'">
-        <div class="feat-card-bg" style="background-image: url('Holidayinn.jpg');"></div>
+        <div class="feat-card-bg" style="background-image:url('Holidayinn.jpg');"></div>
         <div class="feat-overlay">
           <div class="feat-category">Theatre</div>
           <h3 class="feat-title">Holiday Inn</h3>
@@ -195,29 +193,27 @@
         </div>
       </div>
       <div class="feat-card" onclick="window.location.href='portfolio.html'">
-        <div class="feat-card-bg" style="background-image: url('MTA5.jpg');"></div>
+        <div class="feat-card-bg" style="background-image:url('MTA5.jpg');"></div>
         <div class="feat-overlay">
-          <div class="feat-category">Theatre</div>
-          <h3 class="feat-title">Utah High School Musical Theatre Awards</h3>
+          <div class="feat-category">Live Events</div>
+          <h3 class="feat-title">Utah HS Musical Theatre Awards</h3>
           <div class="feat-venue">Eccles Theatre</div>
         </div>
       </div>
       <div class="feat-card" onclick="window.location.href='portfolio.html'">
-        <div class="feat-card-bg" style="background-image: url('FID1.jpg');"></div>
+        <div class="feat-card-bg" style="background-image:url('FID1.jpg');"></div>
         <div class="feat-overlay">
           <div class="feat-category">Theatre</div>
-          <h3 class="feat-title">Fiddler On The Roof</h3>
+          <h3 class="feat-title">Fiddler on the Roof</h3>
           <div class="feat-venue">Centerpoint Theatre</div>
         </div>
       </div>
     </div>
   </section>
-
   <footer>
     <div class="footer-copy">© 2026 James Matlock</div>
     <div class="footer-union">IATSE 99</div>
   </footer>
-
   <script>
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -226,49 +222,29 @@
       mobileMenu.classList.toggle('open');
       document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
     });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = '';
+    }));
     const track = document.getElementById('slidesTrack');
     const slides = Array.from(track.querySelectorAll('.hero-slide'));
     const dotsContainer = document.getElementById('heroDots');
     const labelEl = document.getElementById('slideLabel');
-    let current = 0;
-    let timer;
-
+    let current = 0, timer;
     slides.forEach((slide, i) => {
       const dot = document.createElement('div');
       dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
       dot.addEventListener('click', () => goTo(i));
       dotsContainer.appendChild(dot);
     });
-
-    function updateDots() {
-      document.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('active', i === current));
-    }
+    function updateDots() { document.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('active', i===current)); }
     function updateLabel() { labelEl.textContent = slides[current].dataset.label || ''; }
-    function goTo(index) {
-      current = (index + slides.length) % slides.length;
-      track.style.transform = `translateX(-${current * 100}%)`;
-      updateDots(); updateLabel(); resetTimer();
-    }
-    function next() { goTo(current + 1); }
+    function goTo(index) { current = (index+slides.length)%slides.length; track.style.transform=`translateX(-${current*100}%)`; updateDots(); updateLabel(); resetTimer(); }
+    function next() { goTo(current+1); }
     function resetTimer() { clearInterval(timer); timer = setInterval(next, 5000); }
-
     let touchStartX = 0;
-    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) diff > 0 ? next() : goTo(current - 1);
-    });
-
-    updateLabel();
-    resetTimer();
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', e => { const diff = touchStartX - e.changedTouches[0].clientX; if(Math.abs(diff)>40) diff>0?next():goTo(current-1); });
+    updateLabel(); resetTimer();
   </script>
 </body>
 </html>
